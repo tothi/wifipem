@@ -101,7 +101,7 @@ def pcapExtraction(filename, ssid, output_file):
             if((int(pkt['EAP'].code) == 1) and (hasattr(pkt['EAP'], 'tls_handshake_certificate'))):
                 print('[-]  certificate frame found!')
                 hex_array = [pkt['EAP'].tls_handshake_certificate.raw_value[i:i+2] for i in range(0, len(pkt['EAP'].tls_handshake_certificate.raw_value), 2)]
-                file = '{}-{}.pem'.format(ssid, pkt['WLAN'].ta)
+                file = '{}-{}.pem'.format(ssid, count)
                 print('[-]  extracting certificate to file: {}'.format(file))
                 with open(file, 'wb') as f:
                     for ha in hex_array:
